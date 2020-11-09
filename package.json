@@ -1,0 +1,81 @@
+{
+  "version": "0.0.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test --passWithNoTests",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "peerDependencies": {
+    "react": ">=16"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "react-run-code",
+  "author": "Matthew Caseres",
+  "module": "dist/react-run-code.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/react-run-code.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/react-run-code.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@size-limit/preset-small-lib": "^4.7.0",
+    "@storybook/addon-essentials": "^6.1.0-beta.6",
+    "@storybook/addon-info": "^5.3.21",
+    "@storybook/addon-links": "^6.1.0-beta.6",
+    "@storybook/addons": "^6.1.0-beta.6",
+    "@storybook/react": "^6.1.0-beta.6",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "babel-loader": "^8.1.0",
+    "husky": "^4.3.0",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-is": "^17.0.1",
+    "size-limit": "^4.7.0",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.0.3",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.11.0",
+    "@material-ui/icons": "^4.9.1",
+    "@monaco-editor/react": "^3.6.3",
+    "console-feed": "^3.1.10",
+    "monaco-editor": "^0.21.2",
+    "react-cool-onclickoutside": "^1.5.8",
+    "react-dnd": "^11.1.3",
+    "react-dnd-html5-backend": "^11.1.3"
+  }
+}
