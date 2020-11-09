@@ -1,3 +1,3 @@
 # React Run Code
 
-![](image.png)
+![](https://github.com/Open-EdTech/react-run-code/blob/main/.github/editor.gif)
