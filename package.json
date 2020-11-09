@@ -10,6 +10,10 @@
   "engines": {
     "node": ">=10"
   },
+  "repository": {
+  "type": "git",
+  "url": "https://github.com/Open-EdTech/react-run-code"
+},
   "scripts": {
     "start": "tsdx watch",
     "build": "tsdx build",
