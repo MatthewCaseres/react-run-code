@@ -1,4 +1,3 @@
-//Thanks Kent C. Dodds,
 import React from "react";
 import monacoForTypes, { editor } from "monaco-editor";
 

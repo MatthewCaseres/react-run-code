@@ -1,6 +1,6 @@
-import React, { useEffect, Dispatch, SetStateAction } from "react";
-import { Console, Hook, Unhook } from "console-feed";
-import { useConsoleMessages } from "./editorContext";
+import React, { useEffect, Dispatch, SetStateAction } from 'react';
+import { Console, Hook, Unhook } from 'console-feed';
+import { useConsoleMessages } from './editorContext';
 
 const LogsContainer = ({
   editorId,
@@ -21,15 +21,15 @@ const LogsContainer = ({
         if (log.data?.pop() === editorId) {
           // Problem completion determined by logs. How else?
           let lastItem = log.data?.slice(-1)[0];
-          if (lastItem === "Problem solved") {
-            onSuccess?.((count) => count + 1);
+          if (lastItem === 'Problem solved') {
+            onSuccess?.(count => count + 1);
           }
           if (
-            log.method === "error" &&
-            typeof lastItem === "object" &&
+            log.method === 'error' &&
+            typeof lastItem === 'object' &&
             lastItem !== null &&
-            "expected" in lastItem &&
-            "returned" in lastItem
+            'expected' in lastItem &&
+            'returned' in lastItem
           ) {
             onFailure?.();
           }
@@ -42,11 +42,10 @@ const LogsContainer = ({
       Unhook(window.console as any);
     };
     //dependencies prevent stale
-  }, []);
+  }, [editorId, onFailure, onSuccess, setLogs]);
 
   return (
-    
-    <div className="log" style={{ backgroundColor: "#242424" }}>
+    <div className="log" style={{ backgroundColor: '#242424' }}>
       <Console
         logs={logs as any[]}
         styles={{ BASE_FONT_SIZE: 13 }}

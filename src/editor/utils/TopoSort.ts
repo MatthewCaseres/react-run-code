@@ -1,5 +1,5 @@
 // https://leetcode.com/problems/course-schedule-ii/discuss/146326/JavaScript-DFS
-const TopoSort = function (ranFile: number, deps: number[][]) {
+const TopoSort = function(ranFile: number, deps: number[][]) {
   const res: number[] = [];
   const seeing = new Set<number>();
   const seen = new Set<number>();

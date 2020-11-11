@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   useEditor,
@@ -6,11 +6,11 @@ import {
   useModelIndex,
   useMonaco,
   modelsInfoType,
-} from "../editorContext";
-import PlayButton from "./rightButtons";
-import Tab from "./tab";
-import NewFileButton from "./plusNewFile/plusNewFile";
-import { addNewModel } from "../mountFunctions";
+} from '../editorContext';
+import PlayButton from './rightButtons';
+import Tab from './tab';
+import NewFileButton from './plusNewFile/plusNewFile';
+import { addNewModel } from '../mountFunctions';
 
 const useStyles = makeStyles({
   bar: {
@@ -31,7 +31,7 @@ type TopBarProps = {
 
 export type PlusModelFunc = (
   filename: string,
-  language: "javascript" | "typescript" | "json"
+  language: 'javascript' | 'typescript' | 'json'
 ) => void;
 
 export default function TopBar({ editorId, modelsInfo }: TopBarProps) {
@@ -44,11 +44,11 @@ export default function TopBar({ editorId, modelsInfo }: TopBarProps) {
   //curry function adding from mount
   const plusModel = (
     filename: string,
-    language: "javascript" | "typescript" | "json"
+    language: 'javascript' | 'typescript' | 'json'
   ) =>
     addNewModel(
       {
-        value: "",
+        value: '',
         filename,
         language,
       },
@@ -89,13 +89,13 @@ export default function TopBar({ editorId, modelsInfo }: TopBarProps) {
     if (ctxEditor && models && selectedIdx !== undefined) {
       ctxEditor.updateOptions({ readOnly: models[selectedIdx].readOnly });
     }
-  }, [selectedIdx]);
+  }, [selectedIdx, ctxEditor, selectedIdx]);
 
   return (
     <div className={classes.bar}>
       {models &&
         models
-          .filter((model) => !model.shown)
+          .filter(model => !model.shown)
           .map((model, index) => (
             <Tab
               key={index}

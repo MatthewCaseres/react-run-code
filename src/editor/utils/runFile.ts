@@ -78,7 +78,6 @@ export default async function runFile(
         if (e.stack) {
           let message: string = e.stack;
           const index = message.indexOf('\n');
-          index === -1 ? undefined : index;
           message = message.substring(0, index);
           console.error(message, editorId);
         } else {

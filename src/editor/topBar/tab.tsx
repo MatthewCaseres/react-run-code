@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { useEditor, useModelIndex } from "../editorContext";
-import { modelType } from "../editorContext";
-import LanguageIcon from "./languageIcon";
-import { useDrag, useDrop } from "react-dnd";
+import { useEditor, useModelIndex } from '../editorContext';
+import { modelType } from '../editorContext';
+import LanguageIcon from './languageIcon';
+import { useDrag, useDrop } from 'react-dnd';
 
 const useStyles = makeStyles({
   tab: {
@@ -50,21 +50,21 @@ export default function Tab({
   dragTabMove,
   deleteTab,
 }: TabProps) {
-  const classes = useStyles()
+  const classes = useStyles();
   const [selectedIdx, setSelectedIdx] = useModelIndex();
   const [ctxEditor, setCtxEditor] = useEditor();
   const [{ isDragging }, drag] = useDrag({
-    item: { type: "moveIdx", index },
-    collect: (monitor) => ({
+    item: { type: 'moveIdx', index },
+    collect: monitor => ({
       isDragging: !!monitor.isDragging(),
     }),
   });
   const [{ isOver }, drop] = useDrop({
-    accept: "moveIdx",
+    accept: 'moveIdx',
     drop: (item: DragTabItem) => {
       dragTabMove(item.index, index);
     },
-    collect: (monitor) => ({
+    collect: monitor => ({
       isOver: !!monitor.isOver(),
     }),
   });
@@ -81,14 +81,12 @@ export default function Tab({
         ref={drop}
         style={{
           backgroundColor:
-            selectedIdx === index ? "#1D2021" : isOver ? "#4F4F4F" : "#2d3233",
+            selectedIdx === index ? '#1D2021' : isOver ? '#4F4F4F' : '#2d3233',
         }}
       >
         <LanguageIcon language={model.language} />
         <span>{model.model.uri.path.substring(1)}</span>
-        <span onClick={() => deleteTab(index)}>
-          x
-        </span>
+        <span onClick={() => deleteTab(index)}>x</span>
       </span>
     </span>
   );

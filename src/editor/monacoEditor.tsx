@@ -4,9 +4,9 @@ import React, {
   useEffect,
   Dispatch,
   SetStateAction,
-} from "react";
-import Editor, { monaco } from "@monaco-editor/react";
-import { editor } from "monaco-editor";
+} from 'react';
+import Editor, { monaco } from '@monaco-editor/react';
+import { editor } from 'monaco-editor';
 import {
   useEditor,
   useMonaco,
@@ -14,16 +14,16 @@ import {
   useModelIndex,
   useConsoleMessages,
   modelInfoType,
-} from "./editorContext";
-import TopBar from "./topBar/topBar";
+} from './editorContext';
+import TopBar from './topBar/topBar';
 import {
   setDynamicHeight,
   setModelsFromInfo,
   setTheme,
-  setRunnerModel
-} from "./mountFunctions";
-import runFile, { runTestFile } from "./utils/runFile";
-import ConsoleLog from "./consoleLog"
+  setRunnerModel,
+} from './mountFunctions';
+import runFile, { runTestFile } from './utils/runFile';
+import ConsoleLog from './consoleLog';
 
 type MonacoEditorProps = {
   id: string;
@@ -54,22 +54,16 @@ function App({
     _valueGetter: () => string,
     editor: editor.IStandaloneCodeEditor
   ) => {
-    monaco.init().then((monaco) => {
+    monaco.init().then(monaco => {
       setDynamicHeight(editor, setHeight);
       setTheme(monaco);
       setMonacoInstance(monaco);
       editorCallbackRef(editor);
-      setModelsFromInfo(
-        modelsInfo,
-        monaco,
-        editor,
-        setModels,
-        setSelectedIdx,
-      );
+      setModelsFromInfo(modelsInfo, monaco, editor, setModels, setSelectedIdx);
       setRunnerModel(monaco);
       //Trigger useEffect with the control counter
       editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter, () =>
-        setControlCounter((count) => count + 1)
+        setControlCounter(count => count + 1)
       );
       monaco.languages.typescript.typescriptDefaults.setEagerModelSync(true);
       let options = monaco.languages.typescript.javascriptDefaults.getCompilerOptions();
@@ -90,7 +84,7 @@ function App({
 
   //Run tests when submission count increases//
   useEffect(() => {
-    if (typeof submissionCount !== "undefined") {
+    if (typeof submissionCount !== 'undefined') {
       const runTests = async () => {
         await runTestFile(id, monacoInstance, models, setConsoleMessages);
       };
@@ -116,19 +110,19 @@ function App({
               scrollbar: {
                 alwaysConsumeMouseWheel: false,
               },
-              wordWrap: "on",
-              wrappingStrategy: "advanced",
+              wordWrap: 'on',
+              wrappingStrategy: 'advanced',
             }}
             editorDidMount={handleEditorDidMount}
             language="typescript"
             loading={
               <div
                 style={{
-                  backgroundColor: "#1E1E1E",
-                  color: "#919191",
-                  paddingBottom: "10px",
-                  width: "100%",
-                  textAlign: "center",
+                  backgroundColor: '#1E1E1E',
+                  color: '#919191',
+                  paddingBottom: '10px',
+                  width: '100%',
+                  textAlign: 'center',
                 }}
               >
                 Loading...
@@ -136,7 +130,7 @@ function App({
             }
           />
         </div>
-        <div style={{ backgroundColor: "#242424" }}>
+        <div style={{ backgroundColor: '#242424' }}>
           {ConsoleLog && (
             <ConsoleLog
               onSuccess={onSuccess}

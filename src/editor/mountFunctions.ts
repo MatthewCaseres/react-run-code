@@ -1,5 +1,5 @@
-import monacoForType, { editor } from "monaco-editor";
-import { modelsType, modelInfoType } from "./editorContext";
+import monacoForType, { editor } from 'monaco-editor';
+import { modelsType, modelInfoType } from './editorContext';
 
 //When content size changes editor height matches
 function setDynamicHeight(
@@ -17,13 +17,13 @@ function setDynamicHeight(
 }
 
 function setTheme(monaco: typeof monacoForType) {
-  monaco.editor.defineTheme("myCustomTheme", {
-    base: "vs-dark",
+  monaco.editor.defineTheme('myCustomTheme', {
+    base: 'vs-dark',
     inherit: true,
     colors: {},
     rules: [],
   });
-  monaco.editor.setTheme("myCustomTheme");
+  monaco.editor.setTheme('myCustomTheme');
 }
 
 function registerFileCompletion(
@@ -32,7 +32,7 @@ function registerFileCompletion(
 ) {
   monaco.languages.registerCompletionItemProvider(modelInfo.language, {
     triggerCharacters: ["'", '"'],
-    provideCompletionItems: function (model, position) {
+    provideCompletionItems: function(model, position) {
       // find out if we are completing a property in the 'dependencies' object.
       var textUntilPosition = model.getValueInRange({
         startLineNumber: 1,
@@ -54,10 +54,10 @@ function registerFileCompletion(
       return {
         suggestions: [
           {
-            label: modelInfo.filename.replace(/\.[^.]*$/, ""),
+            label: modelInfo.filename.replace(/\.[^.]*$/, ''),
             kind: monaco.languages.CompletionItemKind.Function,
-            documentation: "The Lodash library exported as Node.js modules.",
-            insertText: modelInfo.filename.replace(/\.[^.]*$/, ""),
+            documentation: 'The Lodash library exported as Node.js modules.',
+            insertText: modelInfo.filename.replace(/\.[^.]*$/, ''),
             range: range,
           },
         ],
@@ -92,7 +92,7 @@ export function addNewModel(
 
   //undefined initially so ternary operator deals with edge case, useContext typing issue
   setModels(
-    (models) =>
+    models =>
       [
         ...models!,
         {
@@ -130,18 +130,16 @@ function setModelsFromInfo(
   });
 }
 
-function setRunnerModel(
-  monaco: typeof monacoForType,
-) {
+function setRunnerModel(monaco: typeof monacoForType) {
   let runnerModel: editor.ITextModel;
-  if (!monaco.editor.getModels().some((model) => model.uri.path === "/0.ts")) {
+  if (!monaco.editor.getModels().some(model => model.uri.path === '/0.ts')) {
     runnerModel = monaco.editor.createModel(
-      "",
-      "typescript",
-      monaco.Uri.file("0.ts")
+      '',
+      'typescript',
+      monaco.Uri.file('0.ts')
     );
   } else {
-    runnerModel = monaco.editor.getModel(monaco.Uri.file("0.ts"))!;
+    runnerModel = monaco.editor.getModel(monaco.Uri.file('0.ts'))!;
   }
   // Only use this when testing/debugging
   // setModels(

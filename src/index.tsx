@@ -1,4 +1,4 @@
 // import React, { FC, HTMLAttributes, ReactChild } from 'react';
-import Editor from "./editor/Editor"
+import Editor from './editor/Editor';
 
-export default Editor
+export default Editor;
