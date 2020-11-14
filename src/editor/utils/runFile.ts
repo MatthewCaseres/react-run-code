@@ -52,7 +52,8 @@ export default async function runFile(
         .then(worker => worker(runnerModel.uri));
       const emittedJS = (
         await tsClient.getEmitOutput(runnerModel.uri.toString())
-      ).outputFiles[0].text;
+      ).outputFiles[0].text.replace(/export {};\r\n/, '');
+      
       let consoleOverride = `let console = (function (oldCons) {
         return {
           ...oldCons,

@@ -23,7 +23,9 @@ import {
   setRunnerModel,
 } from './mountFunctions';
 import runFile, { runTestFile } from './utils/runFile';
-import ConsoleLog from './consoleLog';
+if (typeof window !== 'undefined') {
+  var ConsoleLog = require('./consoleLog').default;
+}
 
 type MonacoEditorProps = {
   id: string;
@@ -131,7 +133,7 @@ function App({
           />
         </div>
         <div style={{ backgroundColor: '#242424' }}>
-          {ConsoleLog && (
+          {typeof ConsoleLog !== 'undefined' && (
             <ConsoleLog
               onSuccess={onSuccess}
               onFailure={onFailure}
