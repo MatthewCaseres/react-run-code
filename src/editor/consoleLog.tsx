@@ -55,4 +55,6 @@ const LogsContainer = ({
   );
 };
 
+type logsType = typeof LogsContainer
+export {logsType}
 export default LogsContainer;
