@@ -77,10 +77,19 @@ export default function TopBar({ editorId, modelsInfo }: TopBarProps) {
   }
 
   function deleteTab(index: number) {
-    if (models) {
+    if (models && models.length > 1) {
       let newModels = [...models];
       newModels.splice(index, 1);
       setModels(newModels);
+      if (index < newModels.length) {
+        setSelectedIdx(index);
+        ctxEditor?.setModel(newModels[index].model);
+      } else {
+        setSelectedIdx(index-1);
+        ctxEditor?.setModel(newModels[index - 1].model);
+      }
+    } else {
+      console.error("Cannot delete only model", editorId)
     }
   }
   //if model is readonly make editor readonly
